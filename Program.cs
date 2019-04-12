@@ -8,6 +8,11 @@ namespace queryconsul1
     {
         static void Main(string[] args)
         {
+            SelectRandomServer();
+            Console.WriteLine("Hello World!");
+        }
+        private static void Query()
+        {
             using (ConsulClient consulClient = new ConsulClient(c => c.Address = new Uri("http://127.0.0.1:8500")))
             {
                 //consulClient.Agent.Services()获取consul中注册的所有的服务
@@ -25,7 +30,22 @@ namespace queryconsul1
                 var agentService = agentServices.ElementAt(Environment.TickCount % agentServices.Count());
                 Console.WriteLine($"{agentService.Address},{agentService.ID},{agentService.Service},{agentService.Port}");
             }
-            Console.WriteLine("Hello World!");
+        }
+        private static void SelectRandomServer(){
+            using (var consulClient = new ConsulClient(c => c.Address = new Uri("http://127.0.0.1:8500")))
+            {
+                var services = consulClient.Agent.Services().Result.Response
+                .Values.Where(s => s.Service.Equals("apiservice1", StringComparison.OrdinalIgnoreCase));
+                if (!services.Any())
+                {
+                    Console.WriteLine("找不到服务的实例");
+                }
+                else
+                {
+                    var service = services.ElementAt(Environment.TickCount % services.Count());
+                    Console.WriteLine($"{service.Address}:{service.Port}");
+                }
+            }
         }
     }
 }
