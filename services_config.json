@@ -1,0 +1,38 @@
+{
+    "services": [
+        {
+            "id": "CLIENT_SERVICE_01",
+            "name": "MVCClientService",
+            "tags": [
+                "urlprefix-/MVCClientService01"
+            ],
+            "address": "192.168.31.178",
+            "port": 5000,
+            "checks": [
+                {
+                    "name": "clientservice_check",
+                    "http": "http://192.168.31.178:5000",
+                    "interval": "10s",
+                    "timeout": "5s"
+                }
+            ]
+        },
+        {
+            "id": "CLIENT_SERVICE_02",
+            "name": "APIClientService",
+            "tags": [
+                "urlprefix-/APIClientService02"
+            ],
+            "address": "192.168.31.178",
+            "port": 5000,
+            "checks": [
+                {
+                    "name": "clientservice_check",
+                    "http": "http://192.168.31.178/api/values",
+                    "interval": "10s",
+                    "timeout": "5s"
+                }
+            ]
+        }
+    ]
+}

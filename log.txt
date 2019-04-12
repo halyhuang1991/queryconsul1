@@ -1,0 +1,37 @@
+echo "# queryconsul1" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:halyhuang1991/queryconsul1.git
+git push -u origin master
+
+
+Consul Server服务端安装
+//服务端192.168.31.175执行
+consul agent -server -ui -bootstrap-expect=3 -data-dir=/tmp/consul  
+-node=consul-175 -client=0.0.0.0  -bind=192.168.31.175 -datacenter=dc1
+//服务端192.168.31.176执行
+consul agent -server -ui -bootstrap-expect=3 -data-dir=/tmp/consul  -node=consul-176 
+-client=0.0.0.0  -bind=192.168.31.176 -datacenter=dc1 -join 192.168.31.175
+//服务端192.168.31.177执行
+consul agent -server -ui -bootstrap-expect=3 -data-dir=/tmp/consul  
+-node=consul-177 -client=0.0.0.0  -bind=192.168.31.177 -datacenter=dc1 -join 192.168.31.175
+
+因为是集群安装，bootstrap-expect=3，以服务端的数量为准
+datacenter=dc1，三台必须在一个数据中心 
+176和177的启动命令中，有一句 -join 192.168.31.175 => 有了这一句，就把176和177加入到了175所在的集群中。
+启动之后，集群就开始了Vote（投票选Leader）的过程
+查看各个server的情况：
+consul members
+查看目前全部的consul的角色状态：
+consul operator raft list-peers
+
+Consul Client安装
+---服务注册
+在192.168.31.178一个文件夹dotnet new webapi,
+在consul.exe那里添加config文件夹添加service_config.json
+在Consul Client 192.168.31.178运行命令：
+consul agent -config-dir=/config -data-dir=/tmp
+-node=consul-178 -client=0.0.0.0 -bind=192.168.31.178 -datacenter=dc1 -join 192.168.31.175
+---服务发现
+代码如webapi-dotnet那里一样

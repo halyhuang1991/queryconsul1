@@ -1,0 +1,11 @@
+D:\C\github\queryconsul1\bin\Debug\netcoreapp2.0\queryconsul1.deps.json
+D:\C\github\queryconsul1\bin\Debug\netcoreapp2.0\queryconsul1.runtimeconfig.json
+D:\C\github\queryconsul1\bin\Debug\netcoreapp2.0\queryconsul1.runtimeconfig.dev.json
+D:\C\github\queryconsul1\bin\Debug\netcoreapp2.0\queryconsul1.dll
+D:\C\github\queryconsul1\bin\Debug\netcoreapp2.0\queryconsul1.pdb
+D:\C\github\queryconsul1\obj\Debug\netcoreapp2.0\queryconsul1.csprojResolveAssemblyReference.cache
+D:\C\github\queryconsul1\obj\Debug\netcoreapp2.0\queryconsul1.csproj.CoreCompileInputs.cache
+D:\C\github\queryconsul1\obj\Debug\netcoreapp2.0\queryconsul1.AssemblyInfoInputs.cache
+D:\C\github\queryconsul1\obj\Debug\netcoreapp2.0\queryconsul1.AssemblyInfo.cs
+D:\C\github\queryconsul1\obj\Debug\netcoreapp2.0\queryconsul1.dll
+D:\C\github\queryconsul1\obj\Debug\netcoreapp2.0\queryconsul1.pdb
